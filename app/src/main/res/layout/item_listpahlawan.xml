@@ -32,7 +32,7 @@
             android:id="@+id/tvNama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Soekarno"
+            android:text="Ir Soekarno"
             android:textSize="30dp"
             android:textStyle="bold|italic"
             />
@@ -49,16 +49,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginHorizontal="5dp"
-                android:background="@color/design_default_color_secondary_variant"
-                android:text="Bagikan"/>
+                android:background="#FFFFCC99"
+                android:text="SHARE"/>
             <Button
                 android:id="@+id/btn_lihat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginHorizontal="5dp"
-                android:background="@color/design_default_color_secondary_variant"
-                android:text="Lihat"/>
+                android:background="#FFFFCC99"
+                android:text="LIHAT"/>
         </LinearLayout>
     </LinearLayout>
 
