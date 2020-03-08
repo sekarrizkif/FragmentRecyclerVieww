@@ -42,17 +42,16 @@ public class HeroesData {
             R.drawable.tan_malaka
     };
 
-    public static ArrayList<com.example.pahlawann.Heroes> getHeroList() {
-        com.example.pahlawann.Heroes heroes = null;
-        ArrayList<com.example.pahlawann.Heroes> list = new ArrayList<>();
+    public static ArrayList<Heroes> getHeroList() {
+        Heroes tModel = null;
+        ArrayList<Heroes> list = new ArrayList<>();
 
         for (int i = 0; i < heroNames.length; i++) {
-            heroes = new com.example.pahlawann.Heroes();
-            heroes.setHeroName(heroNames[i]);
-            heroes.setHeroDetail(heroDetails[i]);
-            heroes.setHeroImage(heroesImages[i]);
-
-            list.add(heroes);
+            tModel = new Heroes();
+            tModel.setHeroName(heroNames[i]);
+            tModel.setHeroDetail(heroDetails[i]);
+            tModel.setHeroImage(heroesImages[i]);
+            list.add(tModel);
         }
         return list;
     }

@@ -1,5 +1,6 @@
 package com.example.pahlawann;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,16 +20,15 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class HeroesAdapter extends RecyclerView.Adapter<HeroesAdapter.ViewHolder> {
-    private ArrayList<Heroes> listHero;
+
+    private ArrayList<Heroes> listHero = new ArrayList<>();
     private Context context;
 
-    public HeroesAdapter(ArrayList<Heroes> heroList, Context context) {
+    public HeroesAdapter(Context context){
         this.context = context;
     }
 
-    public ArrayList<Heroes> getListHero() {
-        return listHero;
-    }
+    public ArrayList<Heroes> getListHero(){ return listHero; }
 
     public void setListHero(ArrayList<Heroes> listHero) {
         this.listHero = listHero;
@@ -39,7 +39,6 @@ public class HeroesAdapter extends RecyclerView.Adapter<HeroesAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemRow = LayoutInflater.from(viewGroup.getContext()).
                 inflate(R.layout.item_listpahlawan, viewGroup, false);
-
         return new ViewHolder(itemRow);
     }
 
@@ -53,7 +52,6 @@ public class HeroesAdapter extends RecyclerView.Adapter<HeroesAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailPahlawan.class);
-
                 intent.putExtra("img_url", getListHero().get(i).getHeroImage());
                 intent.putExtra("title", getListHero().get(i).getHeroName());
                 intent.putExtra("detail", getListHero().get(i).getHeroDetail());
@@ -66,7 +64,7 @@ public class HeroesAdapter extends RecyclerView.Adapter<HeroesAdapter.ViewHolder
                 public void onClick (View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                String heroName = "This is a hero" + getListHero().get(i).getHeroName();
+                String heroName = "INI PAHLAWAN" + getListHero().get(i).getHeroName();
                 intent.putExtra(Intent.EXTRA_TEXT, heroName);
                 context.startActivity(Intent.createChooser(intent, "Share Using"));
             }

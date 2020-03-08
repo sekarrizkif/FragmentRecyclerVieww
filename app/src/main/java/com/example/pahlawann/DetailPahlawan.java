@@ -3,19 +3,21 @@ package com.example.pahlawann;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
+import android.os.strictmode.WebViewMethodCalledOnWrongThreadViolation;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Glide;
 
 public class DetailPahlawan extends AppCompatActivity {
-
     ImageView ivDetail;
     TextView tvDetail,tvNama;
+
+    String title, desc;
+    int gthumb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class DetailPahlawan extends AppCompatActivity {
         tvNama = findViewById(R.id.team_heroName);
 
         getIncomingIntent();
+        setIncomingIntent();
     }
 
     @Override
@@ -45,16 +48,21 @@ public class DetailPahlawan extends AppCompatActivity {
     private void getIncomingIntent(){
         Bundle bundle = getIntent().getExtras();
         if(bundle !=null){
-            int ivThumb = bundle.getInt("img_url");
-            Glide.with(getApplicationContext()).load(ivThumb).into(ivDetail);
-            String getDesc = bundle.getString("detail");
-            String getTitle= bundle.getString("title");
+            gthumb = bundle.getInt("img_url", 1);
+            //Glide.with(getApplicationContext()).load(ivThumb).into(ivDetail);
+            desc = bundle.getString("detail");
+            title = bundle.getString("title");
 
-            tvDetail.setText(getDesc);
-            tvNama.setText(getTitle);
+//            tvDetail.setText(getDesc);
+//            tvNama.setText(getTitle);
         }
     }
 
+    public void setIncomingIntent(){
+        ivDetail.setImageResource(gthumb);
+        tvDetail.setText(desc);
+        tvNama.setText(title);
+    }
 
 
 }

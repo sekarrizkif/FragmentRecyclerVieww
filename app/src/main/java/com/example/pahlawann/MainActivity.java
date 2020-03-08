@@ -1,28 +1,52 @@
 package com.example.pahlawann;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-    private RecyclerView rvHero;
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    BottomNavigationView bottomNavigationView;
+    Fragment selectedFragment = new HomeFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bottomNavigationView = findViewById(R.id.btn_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        loadFragment(selectedFragment);
+    }
 
-        rvHero = findViewById(R.id.activitymain_rv);
-        rvHero.setHasFixedSize(true);
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.menu_home:
+                selectedFragment = new HomeFragment();
+                loadFragment(selectedFragment);
+                break;
+            case R.id.menu_profile:
+                selectedFragment = new ProfileFragment();
 
-        HeroesAdapter heroesAdapter = new HeroesAdapter(HeroesData.getHeroList(),
-                getApplicationContext());
-        rvHero.setLayoutManager(new LinearLayoutManager(this));
-        rvHero.setAdapter(heroesAdapter);
+                break;
+        }
 
+        return loadFragment(selectedFragment);
+    }
 
+    private boolean loadFragment(Fragment selectedFragment) {
+        if (selectedFragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.activitymain_container,selectedFragment)
+                    .commit();
+            return true;
+        }
+        return false;
     }
 }
